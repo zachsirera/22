@@ -104,7 +104,7 @@ def deal(players, cards):
 	for i in range(1, deal_cards - 1):
 		for j in range(1, players + 1):
 
-			card_value = random.randint(1, len(deck))
+			card_value = random.randint(1, len(deck) - 1)
 			card = deck[card_value]
 			
 			if j == 1:
@@ -217,7 +217,7 @@ def turn(play):
 
 # print(len(deck))
 
-# get_players()
+get_players()
 
 
 
