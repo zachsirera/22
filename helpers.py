@@ -6,6 +6,21 @@ import math
 # Create global variables that may be needed for the game. This will eventually be made a little more OOP. 
 deck = []
 
+built_deck = [
+	{"face": "2", "value": 2, "score_value": 2}, {"face": "2", "value": 2, "score_value": 2}, {"face": "2", "value": 2, "score_value": 2}, {"face": "2", "value": 2, "score_value": 2}, 
+	{"face": "3", "value": 3, "score_value": 3}, {"face": "3", "value": 3, "score_value": 3}, {"face": "3", "value": 3, "score_value": 3}, {"face": "3", "value": 3, "score_value": 3}, 
+	{"face": "4", "value": 4, "score_value": 4}, {"face": "4", "value": 4, "score_value": 4}, {"face": "4", "value": 4, "score_value": 4}, {"face": "4", "value": 4, "score_value": 4}, 
+	{"face": "5", "value": 5, "score_value": 5}, {"face": "5", "value": 5, "score_value": 5}, {"face": "5", "value": 5, "score_value": 5}, {"face": "5", "value": 5, "score_value": 5}, 
+	{"face": "6", "value": 6, "score_value": 6}, {"face": "6", "value": 6, "score_value": 6}, {"face": "6", "value": 6, "score_value": 6}, {"face": "6", "value": 6, "score_value": 6}, 
+	{"face": "7", "value": 7, "score_value": 7}, {"face": "7", "value": 7, "score_value": 7}, {"face": "7", "value": 7, "score_value": 7}, {"face": "7", "value": 7, "score_value": 7}, 
+	{"face": "8", "value": 8, "score_value": 8}, {"face": "8", "value": 8, "score_value": 8}, {"face": "8", "value": 8, "score_value": 8}, {"face": "8", "value": 8, "score_value": 8}, 
+	{"face": "9", "value": 9, "score_value": 9}, {"face": "9", "value": 9, "score_value": 9}, {"face": "9", "value": 9, "score_value": 9}, {"face": "9", "value": 9, "score_value": 9}, 
+	{"face": "10", "value": 10, "score_value": 10}, {"face": "10", "value": 10, "score_value": 10}, {"face": "10", "value": 10, "score_value": 10}, {"face": "10", "value": 10, "score_value": 10},
+	{"face": "J", "value": 11, "score_value": 10}, {"face": "J", "value": 11, "score_value": 10}, {"face": "J", "value": 11, "score_value": 10}, {"face": "J", "value": 11, "score_value": 10},
+	{"face": "Q", "value": 12, "score_value": 10}, {"face": "Q", "value": 12, "score_value": 10}, {"face": "Q", "value": 12, "score_value": 10}, {"face": "Q", "value": 12, "score_value": 10},
+	{"face": "K", "value": 13, "score_value": 10}, {"face": "K", "value": 13, "score_value": 10}, {"face": "K", "value": 13, "score_value": 10}, {"face": "K", "value": 13, "score_value": 10},
+	{"face": "A", "value": 14, "score_value": 11}, {"face": "A", "value": 14, "score_value": 11}, {"face": "A", "value": 14, "score_value": 11}, {"face": "A", "value": 14, "score_value": 11}]
+
 hand1 = []
 hand2 = []
 hand3 = []
@@ -18,6 +33,18 @@ score1 = 0
 score2 = 0
 score3 = 0
 score4 = 0
+
+# Create the class for cards 
+class card:
+
+	# Initializer / Instance Attributes
+    def __init__(face, value, score_value):
+        self.face = face
+        self.value = value
+        self.score_value = score_value
+
+
+
 
 def get_players():
 	''' This is a function to ask the user how many players are playing. '''
@@ -52,10 +79,20 @@ def generate_deck():
 
 	for i in range(1, deck_len + 1):
 
-		card = {
-			'card': cards[math.ceil(i / 4) - 1]
-		}
-		deck.append(card)
+		card_face = cards[math.ceil(i / 4) - 1]
+
+		card_value = int(card_face)
+
+		if card_value <= 10:
+			card_score_value = card_value
+		elif card_value == "A":
+			card_score_value = 11
+		else:
+			card_value = 10
+
+		this_card = card(card_face, card_value, card_score_value)
+
+		deck.append(this_card)
 
 	return deck
 
@@ -104,21 +141,21 @@ def deal(players, cards):
 	for i in range(1, deal_cards - 1):
 		for j in range(1, players + 1):
 
-			card_value = random.randint(1, len(deck) - 1)
-			card = deck[card_value]
+			card_value = random.randint(1, len(built_deck) - 1)
+			card = built_deck[card_value]
 			
 			if j == 1:
-				hand1.append(card['card'])
-				deck.pop(card_value)
+				hand1.append(card)
+				built_deck.pop(card_value)
 			if j == 2:
-				hand2.append(card['card'])
-				deck.pop(card_value)
+				hand2.append(card)
+				built_deck.pop(card_value)
 			if j == 3: 
-				hand3.append(card['card'])
-				deck.pop(card_value)
+				hand3.append(card)
+				built_deck.pop(card_value)
 			if j == 4:
-				hand4.append(card['card'])
-				deck.pop(card_value)
+				hand4.append(card)
+				built_deck.pop(card_value)
 
 	if players >= 2:
 		hands.append(hand1)
@@ -153,10 +190,10 @@ def dealback(new_cards):
 		exit(1)
 
 	for i in range(new_cards):
-		card_value = random.randint(1, len(deck))
-		card = deck[card_value]
+		card_value = random.randint(1, len(built_deck))
+		card = built_deck[card_value]
 		deal_back.append(card['card'])
-		deck.pop(card_value)
+		built_deck.pop(card_value)
 
 	return deal_back
 
@@ -197,7 +234,20 @@ def turn(play):
 	'''
 	
 
+def beat(their_play, your_play):
+	''' This is a function to check whether your play beats the current play on the table.'''
 
+	play_len = len(their_play)
+
+	for i in range(1, play_len):
+		if your_play[i]['value'] < their_play[i]['value']:
+			return false
+		elif i == play_len:
+			return true
+		else:
+			pass
+
+	
 
 
 
@@ -208,16 +258,17 @@ def turn(play):
 			
 # generate_deck()
 # print(deck)
-# deal(4, 5)
 
-# print(hands[0])
-# print(hands[1])
-# print(hands[2])
-# print(hands[3])
+deal(4, 5)
+
+print(hands[0])
+print(hands[1])
+print(hands[2])
+print(hands[3])
 
 # print(len(deck))
 
-get_players()
+# get_players()
 
 
 
