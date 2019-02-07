@@ -1,0 +1,20 @@
+This is a file to contain thoughts for the development of the game.
+
+Functions needed:
+
+	*** Game Essentials ***
+	
+	generate_deck() 	--> return deck
+	get_players() 		--> return number of players from CLI
+	deal() 				--> return hands for each player, pop each card from deck
+	dealback() 			--> return new cards, pop each card from deck
+	lead()				--> return lead play from CLI, pop card(s) from player's hand
+	play()				--> return play from CLI, pop card(s) from player's hand
+	beat()				--> return boolean. If true, move to next player. If false, reject play.
+	lose_hand()			--> return index of losing play. Pop losing card from deck. Set up subsequent deal and lead player. 
+	lose_game()			--> return boolean. If score >= 22, declare loser. If false, keep playing.  
+
+	*** User Interface ***
+
+	display_hand() 		--> return hand, display formatted
+	get_play()			--> get play as input from CLI 

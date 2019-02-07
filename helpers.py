@@ -5,7 +5,14 @@ import math
 
 # Create global variables that may be needed for the game. This will eventually be made a little more OOP. 
 deck = []
+hand1 = []
+hand2 = []
+hand3 = []
+hand4 = []
+hands = []
+deal_back =[]
 
+# Create a literal deck list of dicts
 built_deck = [
 	{"face": "2", "value": 2, "score_value": 2}, {"face": "2", "value": 2, "score_value": 2}, {"face": "2", "value": 2, "score_value": 2}, {"face": "2", "value": 2, "score_value": 2}, 
 	{"face": "3", "value": 3, "score_value": 3}, {"face": "3", "value": 3, "score_value": 3}, {"face": "3", "value": 3, "score_value": 3}, {"face": "3", "value": 3, "score_value": 3}, 
@@ -21,18 +28,8 @@ built_deck = [
 	{"face": "K", "value": 13, "score_value": 10}, {"face": "K", "value": 13, "score_value": 10}, {"face": "K", "value": 13, "score_value": 10}, {"face": "K", "value": 13, "score_value": 10},
 	{"face": "A", "value": 14, "score_value": 11}, {"face": "A", "value": 14, "score_value": 11}, {"face": "A", "value": 14, "score_value": 11}, {"face": "A", "value": 14, "score_value": 11}]
 
-hand1 = []
-hand2 = []
-hand3 = []
-hand4 = []
-hands = []
 
-deal_back =[]
 
-score1 = 0
-score2 = 0
-score3 = 0
-score4 = 0
 
 # Create the class for cards 
 class card:
@@ -49,7 +46,7 @@ class card:
 def get_players():
 	''' This is a function to ask the user how many players are playing. '''
 
-	players = input('How many players will be playing, 2, 3, or 4?')
+	players = input('How many players will be playing: 2, 3, or 4?')
 
 	if players > 4 or players < 2:
 		print('Please select a number between 2 and 4.')
@@ -72,15 +69,18 @@ def generate_deck():
 	the game, the cards are generated and a list of dicts is returned, numbered 1 to 52 and labeled with the card value.
 	'''
 
+	# Declare global variables 
 	global deck 
+
+	# Declare literals
 	suits = 4
 	deck_len = 52
 	cards = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
 
+	# Construct the deck
 	for i in range(1, deck_len + 1):
 
 		card_face = cards[math.ceil(i / 4) - 1]
-
 		card_value = int(card_face)
 
 		if card_value <= 10:
@@ -91,7 +91,6 @@ def generate_deck():
 			card_value = 10
 
 		this_card = card(card_face, card_value, card_score_value)
-
 		deck.append(this_card)
 
 	return deck
@@ -109,7 +108,7 @@ def deal(players, cards):
 
 	The first argument is the number of players in the hand, the second argument is the number of cards to be dealt. This is 
 	simply the points "taken" by the losing player of the previous hand. This number does not need to be sanitized. The function 
-	will determine the proper amount of cards to deal if this is less than the minimum or greater than the maximum.
+	will determine the proper amount of cards to deal if this is less than the minimum or greater than the maximum. 
 
 	When this function is called at the beginning of a hand, a list of lists is returned, where each sub-list corresponds to each 
 	players hand. These hands are lists of the card values for each card. 
@@ -123,6 +122,7 @@ def deal(players, cards):
 	global hand3
 	global hand4
 	global hands
+
 
 	min_cards = 5
 
@@ -168,6 +168,7 @@ def deal(players, cards):
 	return hands
 
 
+
 def dealback(new_cards):
 	''' This is a function to handle the dealback, a crucial element in a game of 22 
 
@@ -196,6 +197,8 @@ def dealback(new_cards):
 		built_deck.pop(card_value)
 
 	return deal_back
+
+
 
 def lead(leader):
 	''' The lead is the play that starts the turn. The "leader" may choose how many cards to play. 
@@ -248,8 +251,22 @@ def beat(their_play, your_play):
 			pass
 
 	
+def display_hand(hand):
+	''' This is a function to print a users in a nicely-formatted display. '''
 
+	sortedhand = sorted(hand, key=lambda k: k['value'])
 
+	for index, card in enumerate(sortedhand):
+		
+		print("    -----")
+		print("   |     |")
+		print(index + 1, " ", end="")
+		if card['face'] == '10':
+			print("|", card['face']," |")
+		else:
+ 			print("| ", card['face']," |")
+		print("   |     |")
+		print("    -----")
 
 
 		
@@ -259,12 +276,14 @@ def beat(their_play, your_play):
 # generate_deck()
 # print(deck)
 
-deal(4, 5)
+# deal(4, 5)
 
-print(hands[0])
-print(hands[1])
-print(hands[2])
-print(hands[3])
+# display_hand(hands[1])
+
+# print(hands[0])
+# print(hands[1])
+# print(hands[2])
+# print(hands[3])
 
 # print(len(deck))
 
