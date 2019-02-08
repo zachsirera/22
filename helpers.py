@@ -12,21 +12,21 @@ hand4 = []
 hands = []
 deal_back =[]
 
-# Create a literal deck list of dicts
-built_deck = [
-	{"face": "2", "value": 2, "score_value": 2}, {"face": "2", "value": 2, "score_value": 2}, {"face": "2", "value": 2, "score_value": 2}, {"face": "2", "value": 2, "score_value": 2}, 
-	{"face": "3", "value": 3, "score_value": 3}, {"face": "3", "value": 3, "score_value": 3}, {"face": "3", "value": 3, "score_value": 3}, {"face": "3", "value": 3, "score_value": 3}, 
-	{"face": "4", "value": 4, "score_value": 4}, {"face": "4", "value": 4, "score_value": 4}, {"face": "4", "value": 4, "score_value": 4}, {"face": "4", "value": 4, "score_value": 4}, 
-	{"face": "5", "value": 5, "score_value": 5}, {"face": "5", "value": 5, "score_value": 5}, {"face": "5", "value": 5, "score_value": 5}, {"face": "5", "value": 5, "score_value": 5}, 
-	{"face": "6", "value": 6, "score_value": 6}, {"face": "6", "value": 6, "score_value": 6}, {"face": "6", "value": 6, "score_value": 6}, {"face": "6", "value": 6, "score_value": 6}, 
-	{"face": "7", "value": 7, "score_value": 7}, {"face": "7", "value": 7, "score_value": 7}, {"face": "7", "value": 7, "score_value": 7}, {"face": "7", "value": 7, "score_value": 7}, 
-	{"face": "8", "value": 8, "score_value": 8}, {"face": "8", "value": 8, "score_value": 8}, {"face": "8", "value": 8, "score_value": 8}, {"face": "8", "value": 8, "score_value": 8}, 
-	{"face": "9", "value": 9, "score_value": 9}, {"face": "9", "value": 9, "score_value": 9}, {"face": "9", "value": 9, "score_value": 9}, {"face": "9", "value": 9, "score_value": 9}, 
-	{"face": "10", "value": 10, "score_value": 10}, {"face": "10", "value": 10, "score_value": 10}, {"face": "10", "value": 10, "score_value": 10}, {"face": "10", "value": 10, "score_value": 10},
-	{"face": "J", "value": 11, "score_value": 10}, {"face": "J", "value": 11, "score_value": 10}, {"face": "J", "value": 11, "score_value": 10}, {"face": "J", "value": 11, "score_value": 10},
-	{"face": "Q", "value": 12, "score_value": 10}, {"face": "Q", "value": 12, "score_value": 10}, {"face": "Q", "value": 12, "score_value": 10}, {"face": "Q", "value": 12, "score_value": 10},
-	{"face": "K", "value": 13, "score_value": 10}, {"face": "K", "value": 13, "score_value": 10}, {"face": "K", "value": 13, "score_value": 10}, {"face": "K", "value": 13, "score_value": 10},
-	{"face": "A", "value": 14, "score_value": 11}, {"face": "A", "value": 14, "score_value": 11}, {"face": "A", "value": 14, "score_value": 11}, {"face": "A", "value": 14, "score_value": 11}]
+# Create a literal list of dicts
+cards_list = [
+	{"face": "2", "value": 2, "score_value": 2, "deal_2": 5, "deal_3": 5, "deal_4": 5},  
+	{"face": "3", "value": 3, "score_value": 3, "deal_2": 5, "deal_3": 5, "deal_4": 5},  
+	{"face": "4", "value": 4, "score_value": 4, "deal_2": 5, "deal_3": 5, "deal_4": 5},  
+	{"face": "5", "value": 5, "score_value": 5, "deal_2": 5, "deal_3": 5, "deal_4": 5},  
+	{"face": "6", "value": 6, "score_value": 6, "deal_2": 6, "deal_3": 6, "deal_4": 6},  
+	{"face": "7", "value": 7, "score_value": 7, "deal_2": 7, "deal_3": 7, "deal_4": 7},  
+	{"face": "8", "value": 8, "score_value": 8, "deal_2": 8, "deal_3": 8, "deal_4": 7},  
+	{"face": "9", "value": 9, "score_value": 9, "deal_2": 9, "deal_3": 9, "deal_4": 7},  
+	{"face": "10", "value": 10, "score_value": 10, "deal_2": 10, "deal_3": 10, "deal_4": 7},
+	{"face": "J", "value": 11, "score_value": 10, "deal_2": 10, "deal_3": 10, "deal_4": 7}, 
+	{"face": "Q", "value": 12, "score_value": 10, "deal_2": 10, "deal_3": 10, "deal_4": 7}, 
+	{"face": "K", "value": 13, "score_value": 10, "deal_2": 10, "deal_3": 10, "deal_4": 7},
+	{"face": "A", "value": 14, "score_value": 11, "deal_2": 11, "deal_3": 11, "deal_4": 7}]
 
 
 
@@ -46,7 +46,7 @@ class card:
 def get_players():
 	''' This is a function to ask the user how many players are playing. '''
 
-	players = input('How many players will be playing: 2, 3, or 4?')
+	players = int(input('How many players will be playing: 2, 3, or 4? '))
 
 	if players > 4 or players < 2:
 		print('Please select a number between 2 and 4.')
@@ -74,29 +74,17 @@ def generate_deck():
 
 	# Declare literals
 	suits = 4
-	deck_len = 52
-	cards = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
-
+	faces = 13
+	
 	# Construct the deck
-	for i in range(1, deck_len + 1):
-
-		card_face = cards[math.ceil(i / 4) - 1]
-		card_value = int(card_face)
-
-		if card_value <= 10:
-			card_score_value = card_value
-		elif card_value == "A":
-			card_score_value = 11
-		else:
-			card_value = 10
-
-		this_card = card(card_face, card_value, card_score_value)
-		deck.append(this_card)
+	for i in range(faces):
+		for j in range(suits):
+			deck.append(cards_list[i])
 
 	return deck
 
 
-def deal(players, cards):
+def deal(players, deal_cards):
 	''' This is a function to deal cards to players for the coming hand.
 
 	The game of 22 can be played with 2 to 4 players. If the hand is the first hand of the game everyone is dealt 7 cards.
@@ -124,38 +112,24 @@ def deal(players, cards):
 	global hands
 
 
-	min_cards = 5
-
-	if players == 4:
-		max_cards = 7
-	else:
-		max_cards = 11
-
-	if cards > min_cards and cards < max_cards:
-		deal_cards = cards
-	elif cards < min_cards:
-		deal_cards = min_cards
-	else:
-		deal_cards = max_cards
-
-	for i in range(1, deal_cards - 1):
+	for i in range(deal_cards):
 		for j in range(1, players + 1):
 
-			card_value = random.randint(1, len(built_deck) - 1)
-			card = built_deck[card_value]
+			card_value = random.randint(1, len(deck) - 1)
+			card = deck[card_value]
 			
 			if j == 1:
 				hand1.append(card)
-				built_deck.pop(card_value)
+				deck.pop(card_value)
 			if j == 2:
 				hand2.append(card)
-				built_deck.pop(card_value)
+				deck.pop(card_value)
 			if j == 3: 
 				hand3.append(card)
-				built_deck.pop(card_value)
+				deck.pop(card_value)
 			if j == 4:
 				hand4.append(card)
-				built_deck.pop(card_value)
+				deck.pop(card_value)
 
 	if players >= 2:
 		hands.append(hand1)
@@ -191,10 +165,10 @@ def dealback(new_cards):
 		exit(1)
 
 	for i in range(new_cards):
-		card_value = random.randint(1, len(built_deck))
-		card = built_deck[card_value]
+		card_value = random.randint(1, len(deck))
+		card = deck[card_value]
 		deal_back.append(card['card'])
-		built_deck.pop(card_value)
+		deck.pop(card_value)
 
 	return deal_back
 
@@ -213,7 +187,9 @@ def lead(leader):
 
 	global hands
 
-	hand = hands[leader]
+	hand = hands[leader - 1]
+
+	print(hand)
 
 
 
@@ -251,22 +227,42 @@ def beat(their_play, your_play):
 			pass
 
 	
-def display_hand(hand):
-	''' This is a function to print a users in a nicely-formatted display. '''
+def display_hand(hand, player):
+	''' This is a function to print a user's hand in a nicely-formatted display. '''
 
 	sortedhand = sorted(hand, key=lambda k: k['value'])
 
+	print('Here is your hand player', player, ':')
+ 
 	for index, card in enumerate(sortedhand):
-		
-		print("    -----")
-		print("   |     |")
-		print(index + 1, " ", end="")
-		if card['face'] == '10':
-			print("|", card['face']," |")
+		if index + 1 >= 10:
+			print("  ",index + 1, " ", end=" ")
 		else:
- 			print("| ", card['face']," |")
-		print("   |     |")
-		print("    -----")
+			print("  ",index + 1, "  ", end=" ")
+	print()
+
+	for index, card in enumerate(sortedhand):
+		print(" ----- ", end=" ")
+	print()
+
+	for index, card in enumerate(sortedhand):
+		print("|     |", end=" ")
+	print()
+
+	for index, card in enumerate(sortedhand):
+		if card['face'] == '10':
+			print("|", card['face']," |", end=" ")
+		else:
+			print("| ", card['face']," |", end=" ")
+	print()
+
+	for index, card in enumerate(sortedhand):
+		print("|     |", end=" ")
+	print()
+
+	for index, card in enumerate(sortedhand):
+		print(" ----- ", end=" ")
+	print()
 
 
 		
@@ -274,20 +270,19 @@ def display_hand(hand):
 
 			
 # generate_deck()
-# print(deck)
 
-# deal(4, 5)
+# # print(deck)
 
-# display_hand(hands[1])
+# deal(4, 11)
 
-# print(hands[0])
-# print(hands[1])
-# print(hands[2])
-# print(hands[3])
+# display_hand(hands[0], 1)
+# display_hand(hands[1], 2)
+# display_hand(hands[2], 3)
+# display_hand(hands[3], 4)
 
-# print(len(deck))
 
 # get_players()
+
 
 
 
