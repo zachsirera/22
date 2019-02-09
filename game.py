@@ -31,6 +31,19 @@ def game():
 	# Get the number of players from CLI input
 	players = helpers.get_players()
 
+
+	# Generate the deck
+	deck = helpers.generate_deck()
+
+
+	# For the first hand, 7 cards are dealt.
+	deal_cards = 7
+
+	
+
+	# Execute the initial deal
+	hands = helpers.deal(players, deal_cards)
+
 	# Create player objects and initialize score. Yes this is ugly. 
 	player1 = player(hands[0], 0)
 	player2 = player(hands[1], 0)
@@ -41,58 +54,51 @@ def game():
 	if players == 4:
 		player4 = player(hands[3], 0)
 
+	# Clear the screen
 	print(chr(27) + "[2J")
 
-	# Generate the deck
-	deck = helpers.generate_deck()
+	# Display each player's hand and allow them to dealback 
+	for i in range(players):
+
+		sortedhand = sorted(hands[i], key=lambda k: k['value'])
+
+		helpers.display_hand(sortedhand, i + 1)
+
+		dealback_string = input("Please indicate whether you would like to keep each card ( eg. ynnynyy): ")
+
+		while len(dealback_string) != len(sortedhand):
+			dealback_string = input("Please indicate whether you would like to keep each card ( eg. ynnynyy): ")
+		else: 
+
+			# Reverse order in order to perform popping operation without error
+			rev_db_string = reversed(dealback_string)
+
+			for index, j in enumerate(rev_db_string):
+				if j == "n":
+					sortedhand.pop(6 - index)
+				
+			# Get dealback cards 	
+			dealback = helpers.dealback(deal_cards - len(sortedhand))
+
+			# Concatenate the two lists
+			new_hand = sortedhand + dealback
+
+			# sort the new hand
+			sorted_new_hand = sorted(new_hand, key=lambda k: k['value'])
+
+			# Clear the screen
+			print(chr(27) + "[2J")
+
+			# Display the new hand
+			helpers.display_hand(sorted_new_hand, i + 1)
+
+			input("Press enter to move to the next player. ")
+
+			# Clear the screen
+			print(chr(27) + "[2J")
 
 
-	# For the first hand, 7 cards are dealt.
-	deal_cards = 7
 
-	while player1.score < 22 and player2.score < 22 and player3.score < 22 and player4.score < 22:
-
-		# Execute the initial deal
-		hands = helpers.deal(players, deal_cards)
-
-		# Display each player's hand and allow them to dealback 
-		for i in range(players):
-			helpers.display_hand(hands[i], i + 1)
-			dealback_string = input("Please enter whether you would like to keep each card ( eg. ynnynyy): ")
-
-			if len(dealback_string) != len(hands[i]):
-				dealback_string = input("Please enter whether you would like to keep each card ( eg. ynnynyy): ")
-			else: 
-
-			for j in dealback_string:
-				if 
-
-			# Reverse the dealback_string to use pop without error
-			new_db_string = reversed(dealback_string)
-
-			# Remove the cards from the user's hand 
-			for j in new_db_string: 
-				hands[i].pop(int(j) - 1)
-
-			helpers.display_hand(hands[i], i + 1)
-
-			# Call the dealback function to get new cards for the player
-			dealback = helpers.dealback(len(dealback_string)) 
-
-			# Concatenate the player's hand with their dealback, creating their final hand
-			new_hand = hands[i] + dealback
-
-			# Display the hand to the user
-			helpers.display_hand(new_hand, i + 1)
-
-			# Move on to the next player once the player is finished with the dealback.
-			move_on = input('Enter "y" when you are ready to move on to the next player.')
-
-			if move_on == "y":
-				pass
-
-		lead()
-			
 
 
 

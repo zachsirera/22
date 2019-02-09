@@ -167,7 +167,7 @@ def dealback(new_cards):
 	for i in range(new_cards):
 		card_value = random.randint(1, len(deck))
 		card = deck[card_value]
-		deal_back.append(card['card'])
+		deal_back.append(card)
 		deck.pop(card_value)
 
 	return deal_back
@@ -230,37 +230,35 @@ def beat(their_play, your_play):
 def display_hand(hand, player):
 	''' This is a function to print a user's hand in a nicely-formatted display. '''
 
-	sortedhand = sorted(hand, key=lambda k: k['value'])
-
 	print('Here is your hand player', player, ':')
  
-	for index, card in enumerate(sortedhand):
+	for index, card in enumerate(hand):
 		if index + 1 >= 10:
 			print("  ",index + 1, " ", end=" ")
 		else:
 			print("  ",index + 1, "  ", end=" ")
 	print()
 
-	for index, card in enumerate(sortedhand):
+	for index, card in enumerate(hand):
 		print(" ----- ", end=" ")
 	print()
 
-	for index, card in enumerate(sortedhand):
+	for index, card in enumerate(hand):
 		print("|     |", end=" ")
 	print()
 
-	for index, card in enumerate(sortedhand):
+	for index, card in enumerate(hand):
 		if card['face'] == '10':
 			print("|", card['face']," |", end=" ")
 		else:
 			print("| ", card['face']," |", end=" ")
 	print()
 
-	for index, card in enumerate(sortedhand):
+	for index, card in enumerate(hand):
 		print("|     |", end=" ")
 	print()
 
-	for index, card in enumerate(sortedhand):
+	for index, card in enumerate(hand):
 		print(" ----- ", end=" ")
 	print()
 
