@@ -20,12 +20,13 @@ class player:
         self.score = score
 
 
-def game():
-	''' This is a function to play the game of 22 '''
+def game_deal():
+	''' This is a function to initiate the deal and dealback of the game of 22 '''
 
 	# Recall the global variables
 	global deck
 	global hands
+	global players 
 
 
 	# Get the number of players from CLI input
@@ -38,8 +39,6 @@ def game():
 
 	# For the first hand, 7 cards are dealt.
 	deal_cards = 7
-
-	
 
 	# Execute the initial deal
 	hands = helpers.deal(players, deal_cards)
@@ -92,17 +91,35 @@ def game():
 			# Display the new hand
 			helpers.display_hand(sorted_new_hand, i + 1)
 
-			input("Press enter to move to the next player. ")
+			if i != players - 1: 
+				input("Press enter to move to the next player. ")
 
-			# Clear the screen
-			print(chr(27) + "[2J")
+				# Clear the screen
+				print(chr(27) + "[2J")
+			else: 
 
+				input("Press enter to begin. Player 1 will lead.")
 
+				# Clear the screen
+				print(chr(27) + "[2J")
 
+				exit(0)
+
+def game_turn(players):
+	''' This is a function to play a turn '''
+
+	for i in range(players):
+		
 
 
 
 
 
 if __name__ == "__main__":
-	game()
+	game_deal()
+	while player1.score < 22 and player2.score < 22:
+		game_turn(players)
+	else:
+		pass 
+
+
