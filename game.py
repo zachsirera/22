@@ -72,18 +72,26 @@ def game_deal():
 			# Reverse order in order to perform popping operation without error
 			rev_db_string = reversed(dealback_string)
 
+			# Create iterator for dealback
+			k = 0
+
 			for index, j in enumerate(rev_db_string):
 				if j == "n":
 					sortedhand.pop(6 - index)
-				
+					k = k + 1
+
 			# Get dealback cards 	
-			dealback = helpers.dealback(deal_cards - len(sortedhand))
+			dealback = helpers.dealback(k)
 
 			# Concatenate the two lists
 			new_hand = sortedhand + dealback
 
 			# sort the new hand
 			sorted_new_hand = sorted(new_hand, key=lambda k: k['value'])
+
+			# Clear the deal back
+			for l in range(len(dealback)):
+				dealback.pop(0)
 
 			# Clear the screen
 			print(chr(27) + "[2J")
@@ -100,16 +108,16 @@ def game_deal():
 
 				input("Press enter to begin. Player 1 will lead.")
 
+			
 				# Clear the screen
 				print(chr(27) + "[2J")
 
 				exit(0)
 
-def game_turn(players):
-	''' This is a function to play a turn '''
+# def game_turn(players, leader):
+# 	''' This is a function to play a turn '''
 
-	for i in range(players):
-		
+	
 
 
 

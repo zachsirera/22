@@ -159,7 +159,6 @@ def dealback(new_cards):
 	'''
 
 	global deck
-	global deal_back
 
 	if len(deck) < new_cards:
 		exit(1)
