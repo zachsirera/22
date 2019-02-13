@@ -69,54 +69,79 @@ def game_deal():
 			dealback_string = input("Please indicate whether you would like to keep each card ( eg. ynnynyy): ")
 		else: 
 
-			# Reverse order in order to perform popping operation without error
-			rev_db_string = reversed(dealback_string)
-
 			# Create iterator for dealback
 			k = 0
 
-			for index, j in enumerate(rev_db_string):
-				if j == "n":
-					sortedhand.pop(6 - index)
+			for m in dealback_string:
+				if m == "n":
 					k = k + 1
 
-			# Get dealback cards 	
-			dealback = helpers.dealback(k)
+			if k > len(deck):
+				print("You can only take ", len(deck), " cards.")
+				helpers.display_hand(sortedhand, i + 1)
+				dealback_string = input("Please indicate whether you would like to keep each card ( eg. ynnynyy): ")
+			else:	
 
-			# Concatenate the two lists
-			new_hand = sortedhand + dealback
+				# Reverse order in order to perform popping operation without error
+				rev_db_string = reversed(dealback_string)
 
-			# sort the new hand
-			sorted_new_hand = sorted(new_hand, key=lambda k: k['value'])
 
-			# Clear the deal back
-			for l in range(len(dealback)):
-				dealback.pop(0)
+				for index, j in enumerate(rev_db_string):
+					if j == "n":
+						sortedhand.pop(6 - index)
+						
 
-			# Clear the screen
-			print(chr(27) + "[2J")
+				# Get dealback cards 	
+				dealback = helpers.dealback(k)
 
-			# Display the new hand
-			helpers.display_hand(sorted_new_hand, i + 1)
+				# Concatenate the two lists
+				new_hand = sortedhand + dealback
 
-			if i != players - 1: 
-				input("Press enter to move to the next player. ")
+				# sort the new hand
+				sorted_new_hand = sorted(new_hand, key=lambda k: k['value'])
+
+				# Clear the deal back
+				for l in range(len(dealback)):
+					dealback.pop(0)
 
 				# Clear the screen
 				print(chr(27) + "[2J")
-			else: 
 
-				input("Press enter to begin. Player 1 will lead.")
+				# Display the new hand
+				helpers.display_hand(sorted_new_hand, i + 1)
 
-			
-				# Clear the screen
-				print(chr(27) + "[2J")
+				if i != players - 1: 
+					input("Press enter to move to the next player. ")
 
-				exit(0)
+					# Clear the screen
+					print(chr(27) + "[2J")
+				else: 
 
-# def game_turn(players, leader):
-# 	''' This is a function to play a turn '''
+					input("Press enter to begin. Player 1 will lead.")
 
+				
+					# Clear the screen
+					print(chr(27) + "[2J")
+
+					return 0
+
+def game_turn(players, leader):
+	''' This is a function to play a turn '''
+
+	# Declare global variables
+	global hands
+
+	# Display the leader's hand
+	print("Player ", leader + 1, " you have the lead.")
+	helpers.display_hand(hands[i], leader + 1)
+
+	# Get the lead from the player
+	lead = input("Which card(s) would you like to lead? (eg: nnynnnn).")
+
+	# Ensure that the user's lead is appropriate
+	
+	for index, i in lead:
+		if i 
 	
 
 
@@ -124,10 +149,12 @@ def game_deal():
 
 
 if __name__ == "__main__":
-	game_deal()
-	while player1.score < 22 and player2.score < 22:
-		game_turn(players)
-	else:
-		pass 
+	leader = game_deal()
+	# while player1.score < 22 and player2.score < 22:
+	game_turn(players, leader)
+
+
+	# else:
+	# 	pass 
 
 
