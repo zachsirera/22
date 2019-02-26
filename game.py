@@ -133,15 +133,20 @@ def game_turn(players, leader):
 
 	# Display the leader's hand
 	print("Player ", leader + 1, " you have the lead.")
-	helpers.display_hand(hands[i], leader + 1)
+
+	sortedhand = sorted(hands[leader], key=lambda k: k['value'])
+
+	helpers.display_hand(sortedhand, leader + 1)
 
 	# Get the lead from the player
-	lead = input("Which card(s) would you like to lead? (eg: nnynnnn).")
+	lead = input("Which card(s) would you like to lead? (eg: nnynnnn) ")
 
 	# Ensure that the user's lead is appropriate
-	
 	for index, i in lead:
-		if i 
+		if i == 'y':
+			lead_play.append(hands[index])
+
+	display_hand(lead_play, 1)
 	
 
 
