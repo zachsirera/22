@@ -99,6 +99,7 @@ def game_deal():
 
 				# sort the new hand
 				sorted_new_hand = sorted(new_hand, key=lambda k: k['value'])
+				hands[i] = sorted_new_hand
 
 				# Clear the deal back
 				for l in range(len(dealback)):
@@ -131,23 +132,32 @@ def game_turn(players, leader):
 	# Declare global variables
 	global hands
 
+	lead = []
+
 	# Display the leader's hand
 	print("Player ", leader + 1, " you have the lead.")
 
-	sortedhand = sorted(hands[leader], key=lambda k: k['value'])
+	hand = hands[leader]
 
-	helpers.display_hand(sortedhand, leader + 1)
+	helpers.display_hand(hand, leader + 1)
 
 	# Get the lead from the player
-	lead = input("Which card(s) would you like to lead? (eg: nnynnnn) ")
+	lead_play = input("Which card(s) would you like to lead? (eg: nnynnnn) ")
 
 	# Ensure that the user's lead is appropriate
-	for index, i in lead:
-		if i == 'y':
-			lead_play.append(hands[index])
+	while helpers.lead(lead_play, leader):
+		for index, i in enumerate(lead_play):
+			if i == 'y':
+				lead.append(hand[index])
+				hand.pop(index)
+	else:
+		print("That is not a valid lead. Leads of more than 1 card must be of the same value.")
+		lead_play = input("Which card(s) would you like to lead? (eg: nnynnnn) ")
 
-	display_hand(lead_play, 1)
+	helpers.display_play(lead)
 	
+	for j in range(players):
+		pass
 
 
 

@@ -31,18 +31,6 @@ cards_list = [
 
 
 
-# Create the class for cards 
-class card:
-
-	# Initializer / Instance Attributes
-    def __init__(face, value, score_value):
-        self.face = face
-        self.value = value
-        self.score_value = score_value
-
-
-
-
 def get_players():
 	''' This is a function to ask the user how many players are playing. '''
 
@@ -173,7 +161,7 @@ def dealback(new_cards):
 
 
 
-def lead(leader):
+def lead(play, leader):
 	''' The lead is the play that starts the turn. The "leader" may choose how many cards to play. 
 
 	In a turn, one player "leads". The leader may choose to play 1 to 4 cards. If a player leads more than 1 card, 
@@ -186,9 +174,27 @@ def lead(leader):
 
 	global hands
 
-	hand = hands[leader - 1]
+	hand = hands[leader]
 
-	print(hand)
+
+	j = 0
+	lead_play = []
+
+	for index, i in enumerate(play):
+		if i == 'y':
+			j = j + 1
+			lead_play.append(hand[index])
+
+	if j > 1:
+		if len(set(lead_play)) == 1:
+			return True
+		else:
+			return False
+	else:
+		return True
+
+
+	
 
 
 
@@ -224,6 +230,7 @@ def beat(their_play, your_play):
 			return true
 		else:
 			pass
+
 
 	
 def display_hand(hand, player):
@@ -262,23 +269,45 @@ def display_hand(hand, player):
 	print()
 
 
+
+
+def display_play(cards):
+	''' This is a function to print a 'play', or the current cards on the table '''
+
+	print('Here is the current play: ')
+
+	for index, card in enumerate(cards):
+		if index + 1 >= 10:
+			print("  ",index + 1, " ", end=" ")
+		else:
+			print("  ",index + 1, "  ", end=" ")
+	print()
+
+	for index, card in enumerate(cards):
+		print(" ----- ", end=" ")
+	print()
+
+	for index, card in enumerate(cards):
+		print("|     |", end=" ")
+	print()
+
+	for index, card in enumerate(cards):
+		if card['face'] == '10':
+			print("|", card['face']," |", end=" ")
+		else:
+			print("| ", card['face']," |", end=" ")
+	print()
+
+	for index, card in enumerate(cards):
+		print("|     |", end=" ")
+	print()
+
+	for index, card in enumerate(cards):
+		print(" ----- ", end=" ")
+	print()
+
 		
 
-
-			
-# generate_deck()
-
-# # print(deck)
-
-# deal(4, 11)
-
-# display_hand(hands[0], 1)
-# display_hand(hands[1], 2)
-# display_hand(hands[2], 3)
-# display_hand(hands[3], 4)
-
-
-# get_players()
 
 
 
