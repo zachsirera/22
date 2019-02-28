@@ -5,6 +5,7 @@
 # See the README.md for more information
 
 import helpers 
+import ai1
 
 # Create global variables needed
 deck = []
