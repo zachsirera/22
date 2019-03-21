@@ -152,7 +152,7 @@ def dealback(new_cards):
 		exit(1)
 
 	for i in range(new_cards):
-		card_value = random.randint(1, len(deck))
+		card_value = random.randint(0, len(deck) - 1)
 		card = deck[card_value]
 		deal_back.append(card)
 		deck.pop(card_value)
