@@ -183,7 +183,7 @@ def lead(play, leader):
 	for index, i in enumerate(play):
 		if i == 'y':
 			j = j + 1
-			lead_play.append(hand[index])
+			lead_play.append(play[index])
 
 	if j > 1:
 		if len(set(lead_play)) == 1:

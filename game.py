@@ -6,19 +6,42 @@
 
 import helpers 
 import ai1
+# import ai2
+# import ai3
+# import ai4
+
 
 # Create global variables needed
 deck = []
 hands = []
+outcome_list = []
 
 
-# Create the necessary classes 
+# Create the necessary classes
+
+# Player object to track hand and scores of each player. 
 class player:
 
 	# Initializer / Instance Attributes
-    def __init__(self, hand, score):
+    def __init__(self, name, hand, score):
+    	# Important information: player's id, their hand, and their aggregate score for tracking in-game.
+    	self.name = name
         self.hand = hand
         self.score = score
+
+# Outcome object to track who wins a hand under what circumstances. This will be used for strategy comparison.
+class outcome:
+
+	# Initializer / Instance Attributes
+	def __init__(self, loser, leader, players, card)
+		# Important information: who lost the hand, who lead, how many players were there, and what was the losing card.
+		self.winner = loser
+		self.leader = leader
+		self.players = players
+		self.cards = card
+
+
+
 
 
 def game_deal():
