@@ -1,20 +1,45 @@
-This is a file to contain thoughts for the development of the game.
+This is a file to contain thoughts for the development process of the game.
 
 Functions needed:
 
-	*** Game Essentials ***
+	*** PvP Game Essentials ***
 	
-	generate_deck() 	--> return deck
-	get_players() 		--> return number of players from CLI
-	deal() 				--> return hands for each player, pop each card from deck
-	dealback() 			--> return new cards, pop each card from deck
-	lead()				--> return lead play from CLI, pop card(s) from player's hand
-	play()				--> return play from CLI, pop card(s) from player's hand
+	generate_deck() 	--> return deck.
+	get_players() 		--> return number of players from CLI.
+	deal() 				--> return hands for each player, pop each card from deck.
+	dealback() 			--> return new cards, pop each card from deck.
+	lead()				--> return lead play from CLI, pop card(s) from player's hand.
+	play()				--> return play from CLI, pop card(s) from player's hand.
 	beat()				--> return boolean. If true, move to next player. If false, reject play.
 	lose_hand()			--> return index of losing play. Pop losing card from deck. Set up subsequent deal and lead player. 
 	lose_game()			--> return boolean. If score >= 22, declare loser. If false, keep playing.  
 
+
+
 	*** User Interface ***
 
-	display_hand() 		--> return hand, display formatted
-	get_play()			--> get play as input from CLI 
+	display_hand() 		--> return hand, display formatted.
+	get_play()			--> get play as input from CLI .
+
+
+
+
+	*** All AI Game Essentials ***
+
+	generate_deck() 	--> return deck. 
+	deal() 				--> return hands for each AI, pop each card from deck. 
+	dealback() 			--> return new cards, pop each card from deck.
+	lead()				--> return lead play from CLI, pop card(s) from player's hand.
+	play()				--> return play from CLI, pop card(s) from player's hand.
+	beat()				--> return boolean. If true, move to next player. If false, reject play.
+	lose_hand()			--> return index of losing play. Pop losing card from deck. 
+
+	In an All AI game, there will be no score tracking. The only tracking will be the outcome of the hand. What strategy, in what position (initial lead, last, etc.) lost the hand and with what card.
+
+	Future AI games will play the game through to completion. But at this time, the only information to be extracted is how to play each hand.
+
+
+
+	*** AI(s) vs Player(s) Game Essentials ***
+
+	To Be Developed.

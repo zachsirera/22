@@ -44,7 +44,7 @@ class outcome:
 
 
 
-def game_deal():
+def game_deal_human():
 	''' This is a function to initiate the deal and dealback of the game of 22 '''
 
 	# Recall the global variables
@@ -150,7 +150,7 @@ def game_deal():
 
 					return 0
 
-def game_turn(players, leader):
+def game_turn_human(players, leader):
 	''' This is a function to play a turn '''
 
 	# Declare global variables
@@ -184,16 +184,51 @@ def game_turn(players, leader):
 		pass
 
 
+def game_deal_ai():
+	pass
+
+def game_turn_ai():
+	pass
+
+
+
+
+def game_human():
+	''' This is a function to initiate the game process for a game involving all human players. '''
+
+
+def game_AI():
+	''' This is a function to initiate the game process for a game involving all AI players '''
+
+	pass
+
+	# game_deal_ai()
+	# while cards_left != 1:
+	# 	game_turn_ai()
+	# else:
+	# 	loser = 
+	# 	leader = 
+	# 	players =
+	# 	card =
+	# 	hand_outcome = outcome(loser, leader, players, card)
+
+	# 	# Append this to the outcome list.
+	# 	outcome_list.append(hand_outcome)
+
+
+def game_mixed():
+	''' This is a function to initiate the game process for a game involving humans and AI players.'''
+
+	# This will be built out once human and AI games are complete.
+	pass
 
 
 
 if __name__ == "__main__":
-	leader = game_deal()
-	# while player1.score < 22 and player2.score < 22:
-	game_turn(players, leader)
+	leader = game_deal_human()
+	game_turn_human(players, leader)
 
 
-	# else:
-	# 	pass 
+
 
 

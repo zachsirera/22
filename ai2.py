@@ -49,7 +49,50 @@ test_hand = [{"face": "2", "value": 2, "score_value": 2, "deal_2": 5, "deal_3": 
 
 def toss(hand):
 	''' This is a function to apply the rules listed above for the initial deal. '''
-	pass
+	
+	# These cards are tossed no matter what
+	toss_list = ['5', '6', '7', '8']
+
+	# Create a list that will make operations easier
+	face_list = []
+	for card in hand:
+		face_list.append(card['face'])
+
+	# Setup the necessary variables for the popping operation
+	hand_len = len(face_list)
+	rev_hand = reversed(face_list)
+
+	# Pass through and remove the cards that are never kept
+	for index, card in enumerate(rev_hand):
+		if card in toss_list:
+			face_list.pop(hand_len - 1 - index)
+
+	# Pass through and remove cards that are not high value pairs
+	if face_list.count('J') > 1:
+		pass
+	else:
+		face_list = [x for x in face_list if x != 'J']
+
+	# Pass through and remove cards that are not high value triplets
+	if face_list.count('10') > 2:
+		pass 
+	else:
+		face_list = [x for x in face_list if x != '10']
+
+	# Pass through and remove cards that are not high value quads
+	if face_list.count('9') > 3:
+		pass 
+	else:
+		face_list = [x for x in face_list if x != '9']
+
+	# Create and return hand based on remaining items in face_list
+	new_hand = []
+	for value in face_list:
+		card = next((x for x in helpers.cards_list if x['face'] == value), None)
+		new_hand.append(card)
+
+	helpers.display_hand(new_hand, 1)
+	return new_hand
 
 
 def lead(hand):
@@ -60,7 +103,6 @@ def lead(hand):
 def play(hand):
 	''' This is a function to apply the rules listed above for playing in response to the current play '''
 	pass
-
 
 
 
