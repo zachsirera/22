@@ -116,9 +116,21 @@ def lead(hand):
 			helpers.display_hand(lead, 1)
 			helpers.display_play(lead)
 			return lead
+
+	for index, card in enumerate(sorted_hand):
 		# Lead the highest-order, lowest-value multiple
-		else:
-			pass
+		# Instantiate a counter
+		j = 0
+		i = sum(cards['value'] = card for cards in sorted_hand)
+		if i > 1:
+			if i > j:
+				j == i
+				lead_index = index
+		if j > 1:
+			lead = sorted_hand[lead_index]
+			return lead
+
+			
 		# Lead any other multiple
 		# Lead any single that is not a 2 or 3, as long as the resulting hand is not two low cards and an A.
 
