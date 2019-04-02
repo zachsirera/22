@@ -139,7 +139,26 @@ def lead(hand):
 
 def play(hand, current_play):
 	''' This is a function to apply the rules listed above for playing in response to the current play '''
-	pass
+
+	# Create a necessary list
+	play = []
+
+	# Play the lowest card(s) that beat the current play
+	for play_card in current_play:
+		for index, hand_card in enumerate(hand):
+			if card['value'] < play_card['value']:
+				pass
+			else:
+				play.append(hand.pop(index))
+
+			# If there are no higher card(s) to beat a play, the player must play their lowest card(s).
+			if index == len(hand):
+				for i in range(len(current_play)):
+					play.append(hand.pop(i))
+
+	return play
+
+
 
 
 toss(test_hand)

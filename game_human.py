@@ -29,7 +29,7 @@ class player:
 class outcome:
 
 	# Initializer / Instance Attributes
-	def __init__(self, loser, leader, players, card)
+	def __init__(self, loser, leader, players, card):
 		# Important information: who lost the hand, who lead, how many players were there, and what was the losing card.
 		self.loser = loser
 		self.leader = leader

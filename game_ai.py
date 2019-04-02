@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
 
-# This is a program to play the game 22 in a python CLI format
+# This is a program to play the game 22 among only AI players
 # See the README.md for more information
 
 import helpers 
-import ai1
+import ai1 as player1
 # import ai2
 # import ai3
 # import ai4
@@ -18,17 +18,17 @@ import ai1
 class player:
 
 	# Initializer / Instance Attributes
-    def __init__(self, name, hand, score):
-    	# Important information: player's id, their hand, and their aggregate score for tracking in-game.
-    	self.name = name
-        self.hand = hand
-        self.score = score
+	def __init__(self, name, hand, score):
+		# Important information: player's id, their hand, and their aggregate score for tracking in-game.
+		self.name = name
+		self.hand = hand
+		self.score = score
 
 # Outcome object to track who wins a hand under what circumstances. This will be used for strategy comparison.
 class outcome:
 
 	# Initializer / Instance Attributes
-	def __init__(self, loser, leader, players, card)
+	def __init__(self, loser, leader, players, card):
 		# Important information: who lost the hand, who lead, how many players were there, and what was the losing card.
 		self.loser = loser
 		self.leader = leader
