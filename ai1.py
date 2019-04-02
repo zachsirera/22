@@ -142,5 +142,6 @@ def play(hand, current_play):
 	pass
 
 
-
-lead(test_hand)
+toss(test_hand)
+# lead(test_hand)
+# play(test_hand)

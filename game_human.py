@@ -5,10 +5,6 @@
 # See the README.md for more information
 
 import helpers 
-import ai1
-# import ai2
-# import ai3
-# import ai4
 
 
 # Create global variables needed
@@ -35,16 +31,16 @@ class outcome:
 	# Initializer / Instance Attributes
 	def __init__(self, loser, leader, players, card)
 		# Important information: who lost the hand, who lead, how many players were there, and what was the losing card.
-		self.winner = loser
+		self.loser = loser
 		self.leader = leader
 		self.players = players
-		self.cards = card
+		self.card = card
 
 
 
 
 
-def game_deal_human():
+def game_deal():
 	''' This is a function to initiate the deal and dealback of the game of 22 '''
 
 	# Recall the global variables
@@ -150,7 +146,7 @@ def game_deal_human():
 
 					return 0
 
-def game_turn_human(players, leader):
+def game_turn(players, leader):
 	''' This is a function to play a turn '''
 
 	# Declare global variables
@@ -184,43 +180,18 @@ def game_turn_human(players, leader):
 		pass
 
 
-def game_deal_ai():
-	pass
-
-def game_turn_ai():
-	pass
-
-
-
 
 def game_human():
 	''' This is a function to initiate the game process for a game involving all human players. '''
-
-
-def game_AI():
-	''' This is a function to initiate the game process for a game involving all AI players '''
-
 	pass
 
-	# game_deal_ai()
-	# while cards_left != 1:
-	# 	game_turn_ai()
-	# else:
-	# 	loser = 
-	# 	leader = 
-	# 	players =
-	# 	card =
-	# 	hand_outcome = outcome(loser, leader, players, card)
-
-	# 	# Append this to the outcome list.
-	# 	outcome_list.append(hand_outcome)
 
 
-def game_mixed():
-	''' This is a function to initiate the game process for a game involving humans and AI players.'''
+# def game_mixed():
+# 	''' This is a function to initiate the game process for a game involving humans and AI players.'''
 
-	# This will be built out once human and AI games are complete.
-	pass
+# 	# This will be built out once human and AI games are complete.
+# 	pass
 
 
 
